@@ -1,0 +1,29 @@
+-- docker exec -it banco bash
+
+-- psql -U usuario -d meu_banco
+
+-- SELECT * FROM users;
+
+-- chmod +x network.sh && ./network.sh && docker-compose up --build -d
+
+-- docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' frontend
+-- docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' backend
+-- docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' banco
+
+-- frontend
+-- curl http://100.0.0.10
+
+-- backend
+-- curl http://100.0.0.2
+
+-- banco
+-- curl http://100.0.0.3
+
+-- curl http://<IP_do_backend>:80/index.php
+
+-- apt-get update && apt-get install -y iputils-ping
+-- apt-get update
+-- apt-get install -y iputils-ping
+
+-- apt install curl
+

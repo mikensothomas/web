@@ -1,0 +1,17 @@
+FROM ubuntu:latest
+
+FROM php:7.4-apache
+
+# Copia os arquivos para o diretório do Apache
+COPY index.html /var/www/html/index.html
+
+# Instala extensões PHP necessárias para PostgreSQL
+RUN apt-get update \
+    && apt-get install -y libpq-dev \
+    && docker-php-ext-install pgsql
+
+# Adiciona configuração do ServerName ao Apache
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+# Expondo a porta 80 do contêiner
+#EXPOSE 80

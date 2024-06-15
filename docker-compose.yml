@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: frontend
+    ports:
+      - "8080:80"
+    privileged: true
+    networks:
+      rede_web:
+        ipv4_address: 100.0.0.10
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: backend
+    privileged: true
+    networks:
+      rede_web:
+        ipv4_address: 100.0.0.2
+
+  banco:
+    build:
+      context: .
+      dockerfile: Dockerfile.banco
+    container_name: banco
+    privileged: true
+    environment:
+      POSTGRES_DB: meu_banco
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: 12345
+    networks:
+      rede_web:
+        ipv4_address: 100.0.0.3
+
+networks:
+  rede_web:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 100.0.0.0/24

@@ -1,0 +1,18 @@
+FROM ubuntu:latest
+
+# Use a imagem oficial do PostgreSQL
+FROM postgres:13
+
+# Copie o arquivo de inicialização SQL para o diretório apropriado
+COPY init.sql /docker-entrypoint-initdb.d/
+
+# Defina variáveis de ambiente para o PostgreSQL
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=12345
+
+# Exponha a porta padrão do PostgreSQL
+EXPOSE 5432
+
+# Comando para iniciar o PostgreSQL
+CMD ["postgres"]
+
