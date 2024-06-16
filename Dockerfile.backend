@@ -1,7 +1,9 @@
 FROM ubuntu:latest
 
 FROM php:7.4-cli
+
 WORKDIR /app
+
 COPY index.php /app/index.php
 RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pgsql
 CMD ["php", "-S", "0.0.0.0:80", "-t", "/app"]
